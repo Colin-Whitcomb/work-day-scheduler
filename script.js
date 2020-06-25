@@ -1,44 +1,45 @@
 $(document).ready(function () {
 
-    $('.saveBtn').on("click", function () {
+            $('.saveBtn').on("click", function () {
 
-        var toDo = $(this).siblings(".description").val();
-        console.log(toDo);
-        var hour = $(this).parent().attr("id");
-        console.log(hour);
-        localStorage.setItem(hour, toDo);
-    });
+                var toDo = $(this).siblings(".description").val();
+                console.log(toDo);
+                var hour = $(this).parent().attr("id");
+                // console.log(hour);
+                localStorage.setItem(hour, toDo);
+            });
 
-    $('#currentDay').text(moment().format ("dddd, MMM Do YYYY"));
+            $('#currentDay').text(moment().format("dddd, MMM Do YYYY"));
 
-    function giveColor() {
-        var currentTime = moment().hour();
-        console.log(currentTime);
+            function giveColor() {
 
-        $(".time-block").each(function () {
+                $(".time-block").each(function () {
+                    console.log("each ran");
 
-            var hour = parseInt($(this).attr("id"));
-            console.log(hour);
+                    var currentTime = moment().hour();
+                    console.log("This is current time: " + currentTime);
 
-            if (hour < currentTime) {
-                $(this).addClass("past");
+                    var hour = parseInt($(this).attr("id"));
+                    console.log(hour);
 
-            } else if (hour === currentTime) {
-                $(this).addClass("present");
-                $(this).removeClass("past");
+                    if (hour < currentTime) {
+                        $(this).addClass("past");
 
+                    } else if (hour === currentTime) {
+                        $(this).removeClass("past");
+                        $(this).addClass("present");
 
-            } else (hour > currentTime) {
-                $(this).addClass("future");
-                $(this).removeClass("past");
-                $(this).removeClass("present");
+                    } else {
+                        $(this).removeClass("past");
+                        $(this).removeClass("present");
+                        $(this).addClass("future");
+                    }
+
+                })
+
             }
 
-        });
 
-    };
 
-   
-
-    giveColor();
-});
+            giveColor();
+        })

@@ -1,54 +1,58 @@
 $(document).ready(function () {
 
+    $('#currentDay').text(moment().format("dddd, MMM Do YYYY"));
 
+    // Displays any saved material in local storage
+   $('#9 .description').val(localStorage.getItem('9'));
+   $('#10 .description').val(localStorage.getItem('10'));
+   $('#11 .description').val(localStorage.getItem('11'));
+   $('#12 .description').val(localStorage.getItem('12'));
+   $('#13 .description').val(localStorage.getItem('13'));
+   $('#14 .description').val(localStorage.getItem('14'));
+   $('#15 .description').val(localStorage.getItem('15'));
+   $('#16 .description').val(localStorage.getItem('16'));
+   $('#17 .description').val(localStorage.getItem('17'));
     
-            $('.saveBtn').on("click", function () {
+    
+    function giveColor() {
+        // make sure giveColor is called every minute after page loads
+        setInterval(function(){giveColor()}, 1000 *60);
+        $(".time-block").each(function () {
 
-                var toDo = $(this).siblings(".description").val();
-                // console.log("todo" + toDo);
-                var hour = $(this).parent().attr("id");
-                // console.log(hour);
-                localStorage.setItem(hour, toDo);
-                var gotWhatUserWrote = localStorage.getItem(hour);
-                console.log("We got -> " + gotWhatUserWrote);
-                if (gotWhatUserWrote !== "") {
-                    $("id").text(gotWhatUserWrote);
-                }
-               
-            });
+            var currentTime = moment().hour();
+            var hour = parseInt($(this).attr("id"));
 
-            $('#currentDay').text(moment().format("dddd, MMM Do YYYY"));
+            if (hour < currentTime) {
+                $(this).addClass("past");
 
-            
-            function giveColor() {
+            } else if (hour === currentTime) {
+                $(this).removeClass("past");
+                $(this).addClass("present");
 
-                $(".time-block").each(function () {
-                    console.log("each ran");
-
-                    var currentTime = moment().hour();
-                    // console.log("This is current time: " + currentTime);
-
-                    var hour = parseInt($(this).attr("id"));
-                    console.log(hour);
-
-                    if (hour < currentTime) {
-                        $(this).addClass("past");
-
-                    } else if (hour === currentTime) {
-                        $(this).removeClass("past");
-                        $(this).addClass("present");
-
-                    } else {
-                        $(this).removeClass("past");
-                        $(this).removeClass("present");
-                        $(this).addClass("future");
-                    }
-
-                })
-
+            } else {
+                $(this).removeClass("past");
+                $(this).removeClass("present");
+                $(this).addClass("future");
             }
-          
-    
 
-            giveColor();
         })
+
+    }
+
+    $('.saveBtn').on("click", function () {
+        // collecting what has been written in text area, assigning to variable
+        var toDo = $(this).siblings(".description").val();
+
+        // collecting the 'id' of the parent div of the row
+        var hour = $(this).parent().attr("id");
+
+        // pushing the data into local storage
+        // key = id with corresponding time
+        // value = what has been written
+        localStorage.setItem(hour, toDo);
+        console.log(toDo);
+    });
+
+    // calling functions
+    giveColor();
+})

@@ -1,9 +1,9 @@
 # Colin Whitcomb 
 
 ## Deployed Site
-1) https://colin-whitcomb.github.io/responsive-portfolio-/
+1) https://colin-whitcomb.github.io/work-day-scheduler/
 ___
-## Summary & Process
+## Summary & Processs
 
 In this assignment our objective was to create a simple work day scheduler. The scheduler had to display the current date (screen shot 1), have time blocks that change color depending on the time of day, and store and save text written in each section (screen shot 2).
 
@@ -33,6 +33,6 @@ ___
 --- 
 ## Author
 
-***Colin Whitcomb** [LinkedIn](https://ww.linkedin.com/in/colin-whitcomb-b808301a6/)
+**Colin Whitcomb** [LinkedIn](https://ww.linkedin.com/in/colin-whitcomb-b808301a6/)
 
 ___
